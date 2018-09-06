@@ -1,0 +1,30 @@
+{% if data %}
+    <h3>Summary</h3>
+    {#    <ul>#}
+    {#        {% for list in data %}#}
+    {##}
+    {#            <li> {{ list }} </li>#}
+    {##}
+    {#        {% endfor %}#}
+    {#    </ul>#}
+    <p>{{ data }}</p>
+    <form method="post" action="{% url 'save_summary' %}">
+        {% csrf_token %}
+        <input type="hidden" value="{{ data }}" name="summary">
+        <input type="hidden" value="{{ original_text }}" name="topic">
+        <input type="submit" class="btn btn-primary" value="Save Summary">
+    </form>
+
+{% else %}
+    {% include 'summarizer/includes/default_home.html' %}
+
+{% endif %}
+
+{% if message %}
+    <script>
+        $(document).ready(function () {
+            alert('Successfully Saved!');
+        });
+    </script>
+
+{% endif %}

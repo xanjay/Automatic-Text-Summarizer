@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Automatic Text Summarizer</title>
+    {% load staticfiles %}
+    <link rel="shortcut icon" type="image/png" href="{% static 'summarizer/images/logo.png' %}"/>
+    <link rel="stylesheet" href="{% static 'summarizer/css/bootstrap.min.css' %}" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+
+    <style>
+        body {
+            background-color: #e2e6ea;
+        }
+
+        .footer {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            color: black;
+        }
+
+        .nav-logo {
+            width: 40px;
+        }
+
+        .home-page-list {
+            padding: 10px;
+            text-align: left;
+        }
+
+        h3 {
+            color: #007bff;
+        }
+
+        #collapsibleNavbar {
+            background-color: #007bff;
+        }
+
+        .navbar {
+            height: 45px;
+        }
+
+        .nav-item {
+            text-align: center;
+            padding-top: 2px;
+            height: 45px;
+            color: #fff;
+        }
+
+        .navbar-text {
+            color: #ffffff !important;
+        }
+
+        .nav-list:hover, .nav-list:focus {
+            background-color: #D50B32;
+        }
+
+        .navbar-dark .navbar-brand, nav-link {
+            color: #fff;
+        }
+
+        .footer {
+            position: fixed;
+            width: 100%;
+            height: 38px;
+            background-color: #007BFF;
+            color: #fff;
+            margin: 10px 0 0 0;
+            padding: 0;
+        }
+
+        .footer-text {
+            position: relative;
+            top: 7px;
+            margin: 0;
+            padding: 0;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div class="row">
+
+    <nav class="navbar navbar-expand-sm bg-primary navbar-dark fixed-top">
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand mb-0 h1 navbar-text" href="/"><img class="nav-logo"
+                                                                  src="{% static 'summarizer/images/logo.png' %}"
+                                                                  alt="Summarizer">Automatic Text
+            Summarizer<sup>Beta</sup></a>
+
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+            <ul class="navbar-nav">
+                <div class="nav-list">
+                    <li class="nav-item home-page-list"><a class="nav-link navbar-text"
+                                                           href="{% url 'file_form_upload' %} ">Summarize
+                        PDF</a></li>
+                </div>
+                <div class="nav-list">
+                    <li class="nav-item home-page-list"><a class="nav-link navbar-text"
+                                                           href="/news/?source='BBC' ">BBC</a></li>
+                </div>
+                <div class="nav-list">
+                    <li class="nav-item home-page-list"><a class="nav-link navbar-text"
+                                                           href="/news/?source='CNN' ">CNN</a></li>
+                </div>
+                <div class="nav-list">
+                    <li class="nav-item home-page-list"><a class="nav-link navbar-text" href="/news/?source='Nagarik' ">Nagarik</a>
+                    </li>
+                </div>
+            </ul>
+
+
+            {% if user.is_authenticated %}
+
+                <div class="navbar-nav dropdown ml-auto">
+
+                    <button class="btn btn-primary dropdown-toggle" type="button" id="navbarDropdown"
+                            data-toggle="dropdown">Welcome, <b
+                            style="text-transform: uppercase;">{{ user.username }} </b>
+                        <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item nav-list" href="{% url 'history' %}">History</a>
+                        <a class="dropdown-item nav-list" href="{% url 'logout' %} ">LogOut</a>
+                    </div>
+                </div>
+            {% else %}
+                <ul class="navbar-nav ml-auto">
+                    <a type="button" class="btn btn-primary" data-toggle="modal" href="#login-page">Sign In
+                    </a>
+                </ul>
+
+            {% endif %}
+
+        </div>
+
+    </nav>
+
+</div>
+
+<!-- The Modal -->
+<div class="modal fade" id="login-page">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Login</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                {% include "registration/login.html" %}
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="container" style="margin-top: 55px; margin-bottom: 48px;">
+    {% block index %}
+
+    {% endblock %}
+</div>
+
+<div class="footer">
+    <p class="footer-text" align="center">© 2018 Automatic Text Summarizer | ATS</p>
+</div>
+
+
+<script>
+    function validateInputForm() {
+        let url = document.forms["inputForm"]["url"].value;
+        let text = document.forms["inputForm"]["long-text"].value;
+        let regexp = new RegExp("\s");
+        if (url === '' && !regexp.test(text)) {
+            document.getElementById("warning").innerHTML = "Both of the fields are empty!";
+            return false;
+        }
+    }
+
+    function validateNP() {
+        let url = document.forms["inputFormNP"]["url"].value;
+        let text = document.forms["inputFormNP"]["long-text"].value;
+        let regexp = new RegExp("\w");
+        if (url === '' && text === '') {
+            document.getElementById("warning").innerHTML = "कम्तीमा एक स्थान भर्नुहोस् !";
+            return false;
+        }
+        {#else if (!regexp.test(text)) {#}
+        {#    document.getElementById("warning").innerHTML = "कम्तीमा एक स्थान भर्नुहोस् !";#}
+        {#    return false;#}
+        {# } #}
+    }
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,14 @@
+{% extends 'summarizer/base.html' %}
+
+{% block index %}
+
+    <h2>Summary History of "<i>{{ user.username }}</i>"</h2>
+    {% for s in data %}
+        <li>
+            <a href="history_topic?topic={{ s.original_link }}&body={{ s.body }}">{{ s.original_link }}</a>
+        </li>
+        <hr>
+    {% endfor %}
+
+
+{% endblock %}

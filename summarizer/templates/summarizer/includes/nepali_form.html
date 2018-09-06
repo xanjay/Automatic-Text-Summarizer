@@ -1,0 +1,25 @@
+<form name="inputFormNP" action="summarize_nepali_page" method="get" onsubmit="return validateNP();">
+    {% csrf_token %}
+    <div id="warning" class="text-danger"></div>
+    <div class="form-group">
+        <label>पुरा URL प्रदान गर्नुहोस्</label>
+        <input type="url" class="form-control" name="url"/>
+    </div>
+    <div class="form-group">
+        <label>अथवा copy गरिएको पाठ प्रदान गर्नुहोस्</label>
+        <textarea class="form-control" rows="5" name="long-text"
+                  placeholder="यहाँ अनुच्छेदहरु लेख्नुहोस्...."></textarea>
+    </div>
+    <div class="form-group">
+        <label>वाक्यको संख्या</label>
+        <input type="number" min="1" class="form-control" name="number" value="5">
+    </div>
+    <div class="form-group">
+        <label>Algorithm चयन गर्नुहोस्</label>
+        <select class="form-control" name="algorithm">
+            <option value="1" selected="selected">Sentence Scoring</option>
+            <option value="2">Word Frequency</option>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Summarize</button>
+</form>

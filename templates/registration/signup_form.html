@@ -1,0 +1,39 @@
+{% extends 'summarizer/base.html' %}
+{% load staticfiles %}
+{% block index %}
+
+    <style>
+        label {
+            width: 170px;
+        }
+
+        .signup-logo {
+            height: 300px;
+        }
+
+        .right-container {
+            display: block;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+    </style>
+
+    <div class="row">
+        <div class="col-sm-6">
+            <h2>Sign Up</h2>
+            <form method="post" action="{% url 'signup' %}">
+                {% csrf_token %}
+
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-primary">Register</button>
+            </form>
+        </div>
+        <div class="col-sm-6 right-container">
+            <img class="signup-logo" src="{% static 'summarizer/images/logo.png' %}">
+            <h3>Automatic Text Summarizer</h3>
+            <h4>"Don't waste your time reading long texts."</h4>
+        </div>
+    </div>
+{% endblock %}
+

@@ -1,0 +1,27 @@
+
+
+
+<form name="inputForm" action="{% url 'summarize_page' %}" method="get" onsubmit="return validateInputForm();" >
+    {% csrf_token %}
+    <div id="warning" class="text-danger"></div>
+    <div class="form-group">
+        <label>Input Page URL</label>
+        <input type="url" class="form-control" name="url" placeholder="Paste Complete Valid URL"/>
+    </div>
+    <div class="form-group">
+        <label>OR Paste Copied Text</label>
+        <textarea class="form-control" rows ="5" name="long-text" placeholder="Paste Long Text Here.."></textarea>
+    </div>
+    <div class="form-group">
+        <label>No. of Sentences</label>
+        <input type="number" min="1" class="form-control" name="number" value="5">
+    </div>
+    <div class="form-group">
+        <label>Select Algorithm</label>
+        <select class="form-control" name="algorithm">
+            <option value="1" selected="selected">Sentence Scoring</option>
+            <option value="2">Word Frequency</option>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Summarize</button>
+</form>

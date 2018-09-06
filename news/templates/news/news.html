@@ -1,0 +1,19 @@
+{% extends "summarizer/base.html" %}
+
+
+{% block index %}
+
+    <div class="container" style="margin-top: 55px; margin-bottom: 48px;">
+        <h2>Top 5 Headlines From {{ source }}</h2>
+        <ul>
+            {% for key, value in news.items %}
+                <li>
+                    <h3>{{ key }}</h3>
+                </li>
+                    <p>{{ value }}</p>
+
+            {% endfor %}
+        </ul>
+    </div>
+
+{% endblock %}

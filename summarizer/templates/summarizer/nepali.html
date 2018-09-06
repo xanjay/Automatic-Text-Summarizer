@@ -1,0 +1,34 @@
+{% extends "summarizer/base.html" %}
+
+{% block index %}
+
+    <div class="row">
+        <div>
+            <img src="../../static/summarizer/images/logo.png" style="width: 70px">
+        </div>
+        <div>
+            <h3>Automatic Text Summarizer</h3>
+            <p>"Don't waste your time reading long texts."</p>
+        </div>
+        <div class="col-sm-2">
+            <a class="btn btn-primary" href="{% url 'index' %}">EN</a>
+        </div>
+    </div>
+
+    <div class="row">
+
+        <div class="col-sm-6">
+            {% if original_text %}
+                <h3>Original Text/URL</h3>
+                {{ original_text }}
+            {% else %}
+                {% include "summarizer/includes/nepali_form.html" %}
+            {% endif %}
+        </div>
+
+        <div class="col-sm-6">
+            {% include "summarizer/includes/result.html" %}
+        </div>
+    </div>
+
+{% endblock %}

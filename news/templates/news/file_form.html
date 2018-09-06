@@ -1,0 +1,23 @@
+{% extends 'summarizer/base.html' %}
+{% block index %}
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.errors }}
+        <div class="form-group">
+            <label>Upload PDF</label>
+            {{ form.document }}
+        </div>
+
+        <label>Summarize To: (5-50)% </label>
+        <div class="input-group mb-3">
+            {{ form.summary_p }}
+            <div class="input-group-apppend">
+                <span class="input-group-text" id="basic-addon2">%</span>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Summarize and Download</button>
+    </form>
+
+{% endblock %}
