@@ -1,0 +1,5 @@
+python version > 3.6.5
+django version > 2.0.5
+nltk version 3
+Beautiful Soup
+PyPDF2
