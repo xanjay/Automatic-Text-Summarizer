@@ -18,10 +18,11 @@ User can choose one of the following algorithms for text summarization
 
 1. In settings.py, replace value of SECRET_KEY with your own key.
 ```SECRET_KEY = os.environ.get('SECRET_KEY', '-1')```
-- you can generate your secret key [here](https://www.miniwebtool.com/django-secret-key-generator/) 
+- You can generate your secret key [here](https://www.miniwebtool.com/django-secret-key-generator/) 
 2. Create database named 'text_summarizer' in MySQL via cmd or phpmyadmin.
 - Edit your database credentials in following lines in settings.py
-```DATABASES = {
+```
+DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'text_summarizer',
@@ -30,9 +31,10 @@ User can choose one of the following algorithms for text summarization
         'HOST': '',
         'PORT': '',
     }
-}```
+}
+```
 
 3. In the terminal:
     `$ python manage.py migrate` - this will apply migrations to your local MySQL database
     `$ python manage.py createsuperuser` - this will create admin support
-    * Run server as: ```$ python manage.py runserver```
+    * Run server as: ``` $ python manage.py runserver ```
