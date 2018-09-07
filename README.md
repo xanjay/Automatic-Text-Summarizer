@@ -1,4 +1,4 @@
-# Automatic-Text-Summarizer
+# Automatic Text Summarizer
 
 It is a user-friendly web app with responsive design.
 
