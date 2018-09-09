@@ -1,23 +1,31 @@
 {% extends 'summarizer/base.html' %}
+{% load static %}
 {% block index %}
 
-    <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form.errors }}
-        <div class="form-group">
-            <label>Upload PDF</label>
-            {{ form.document }}
-        </div>
+    <div class="row" style="margin-top: 100px">
+        <div class="col-sm-6">
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.errors }}
+                <div class="form-group">
+                    <label>Upload PDF</label>
+                    {{ form.document }}
+                </div>
 
-        <label>Summarize To: (5-50)% </label>
-        <div class="input-group mb-3">
-            {{ form.summary_p }}
-            <div class="input-group-apppend">
-                <span class="input-group-text" id="basic-addon2">%</span>
-            </div>
-        </div>
+                <label>Summarize To: (5-50)% </label>
+                <div class="input-group mb-3">
+                    {{ form.summary_p }}
+                    <div class="input-group-apppend">
+                        <span class="input-group-text" id="basic-addon2">%</span>
+                    </div>
+                </div>
 
-        <button type="submit" class="btn btn-primary">Summarize and Download</button>
-    </form>
+                <button type="submit" class="btn btn-primary">Summarize and Download</button>
+            </form>
+        </div>
+        <div class="col-sm-6">
+            <img src="{% static 'images/pdf_txt.png' %}" style="width: 300px">
+        </div>
+    </div>
 
 {% endblock %}

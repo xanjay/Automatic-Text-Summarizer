@@ -1,10 +1,10 @@
 {% extends "summarizer/base.html" %}
-
+{% load static %}
 {% block index %}
 
     <div class="row">
         <div>
-            <img src="../../static/summarizer/images/logo.png" style="width: 70px">
+            <img src="{% static 'images/logo.png' %}" style="width: 70px">
         </div>
         <div>
             <h3>Automatic Text Summarizer</h3>
