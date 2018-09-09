@@ -1,5 +1,5 @@
 from pprint import pprint
-
+from nltk import tokenize
 import PyPDF2
 from summarizer.algorithms.scoring import scoring_algorithm
 
@@ -19,7 +19,7 @@ def summarize_pdf(pdf_file, sent_percentage):
 
     pdf_file_obj.close()
 
-    sentences = len(body.split('\n'))
+    sentences = count_sent(body)
     sentence_no = int((sent_percentage / 100) * sentences)
 
     print(sentences)
@@ -28,6 +28,17 @@ def summarize_pdf(pdf_file, sent_percentage):
 
     result_list = scoring_algorithm.scoring_main(body, sentence_no)
     summary = "\r\n".join(result_list)  # \r only for display in notepad but \n is valid fro end-of-line
-    summary = summary_title+"\r\n\r"+summary
+    summary = summary_title+"\r\n\r\n"+summary
 
     return summary
+
+
+def count_sent(pdf_body):
+    count = 0
+    pags = pdf_body.split('\n\n')
+    for p in pags:
+        count = count+len(tokenize.sent_tokenize(p))
+
+    return count
+
+
