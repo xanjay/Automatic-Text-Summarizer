@@ -75,7 +75,7 @@ def save_summary(request):
 
 
 def history(request):
-    summary = Summary.objects.filter(user=request.user)
+    summary = Summary.objects.filter(user=request.user).order_by('-id')
     context = {'data': summary}
     return render(request, "summarizer/history.html", context)
 

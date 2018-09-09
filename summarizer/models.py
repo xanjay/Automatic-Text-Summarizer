@@ -7,8 +7,8 @@ from django.contrib.auth.models import User
 
 class Summary(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    body = models.TextField()  #limit or not
-    original_link = models.TextField() ##auto delete option
+    body = models.TextField()
+    original_link = models.TextField()
     date_created = models.DateTimeField()
 
     def __str__(self):
