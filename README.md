@@ -1,8 +1,7 @@
 # Automatic Text Summarizer
 
-A user-friendly web app with responsive design.
-It was built as a final year project for college.
-
+A user-friendly web app with responsive design.<br>
+Quick Demo: http://automatictextsummarizer.herokuapp.com
 ## Features:
 - Summarize both English and Nepali text.
 - Summarize text via either copy-paste paragraph or URL.
