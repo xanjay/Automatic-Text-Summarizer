@@ -21,11 +21,11 @@ User can choose one of the following algorithms for text summarization:
 2. Install the project dependencies:
     `pip install -r requirements.txt`
 
-3. In settings.py, replace value of SECRET_KEY with your own key.
+3. In settings.py, replace value of SECRET_KEY with your own key(set environment variable).
 ```SECRET_KEY = os.environ.get('SECRET_KEY', '-1')```
 - You can generate your secret key [here](https://www.miniwebtool.com/django-secret-key-generator/)
 
-4. Create database named 'text_summarizer' in MySQL via cmd or phpmyadmin.
+4. Create local MySQL database named 'text_summarizer'.
 - Edit your database credentials in following lines in settings.py
 ```
 DATABASES = {
