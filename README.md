@@ -40,7 +40,7 @@ DATABASES = {
 }
 ```
 
-5. In the terminal:
-    `$ python manage.py migrate` - this will apply migrations to your local MySQL database
-    `$ python manage.py createsuperuser` - this will create admin support
-    * Run server as: ``` $ python manage.py runserver ```
+5. In terminal:  
+    * `$ python manage.py migrate` - this will apply migrations to your local MySQL database   
+    * `$ python manage.py createsuperuser` - this will create admin support   
+    * `$ python manage.py runserver` - Run Server
