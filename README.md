@@ -1,6 +1,6 @@
 # Automatic Text Summarizer
 
-A user-friendly web app with responsive design.<br>
+A text summarizer web app with multiple features.<br>
 Quick Demo: http://automatictextsummarizer.herokuapp.com
 ## Features:
 - Summarize both English and Nepali text.
@@ -13,12 +13,17 @@ User can choose one of the following algorithms for text summarization:
 - Frequency Algorithm
 - Sentence Matching
 
+## Dependencies
+- nltk
+- beautiful soup
+- django
+
 ## Installation
 
-1. Go to folder you want to put the cloned project in your terminal & type:
+1. Go to folder you want to put the cloned project in your terminal & type: <br>
     `git clone https://github.com/xanjay/Automatic-Text-Summarizer.git`
 
-2. Install the project dependencies:
+2. Install the project dependencies:<br>
     `pip install -r requirements.txt`
 
 3. In settings.py, replace value of SECRET_KEY with your own key(set environment variable).   
