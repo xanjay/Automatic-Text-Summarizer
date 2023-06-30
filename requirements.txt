@@ -1,7 +1,7 @@
 requests>=2.18.4
 Django>=2.0.5
 nltk==3.4.5
-PyPDF2==1.26.0
+PyPDF2==1.27.9
 lxml==4.2.3
 PyMySQL==0.9.2
 beautifulsoup4==4.6.3
